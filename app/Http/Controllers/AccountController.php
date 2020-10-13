@@ -46,7 +46,11 @@ class AccountController extends Controller
         if($acc){
             $data = ['email'=>request('email'),'password'=>request('password')];
             Auth::attempt($data);
-            return view($role.'/dashboard');
+            if($role == "admin"){
+                return redirect()->route('admin.home');
+            } else {
+                return redirect()->route('user.home');
+            }
         }
     }
 
@@ -60,8 +64,11 @@ class AccountController extends Controller
  
         if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
             //Login Success
-            return view($role.'/dashboard');
- 
+            if($role == "admin"){
+                return redirect()->route('admin.home');
+            } else {
+                return redirect()->route('user.home');
+            }
         } else { // false
  
             //Login Fail
