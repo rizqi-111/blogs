@@ -18,3 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::prefix('account')->group(function () {
+    Route::get('login/{role}','AccountController@login');
+    Route::get('register/{role}','AccountController@register');
+    Route::post('register/{role}','AccountController@store');
+    Route::post('login/{role}','AccountController@auth');
+});

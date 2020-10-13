@@ -14,6 +14,12 @@ return [
     */
 
     'defaults' => [
+        'admins' => [
+            'provider' => 'admins',
+        ],
+        'users' => [
+            'provider' => 'users',
+        ],
         'guard' => 'web',
         'passwords' => 'users',
     ],
