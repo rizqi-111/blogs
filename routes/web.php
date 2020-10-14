@@ -31,3 +31,8 @@ Route::group(['prefix'=>'user','middleware' => 'auth'],function() {
     Route::get('makeBlog','UserController@makeblog')->name('user.makeblog');
     Route::post('makeBlog','UserController@postblog')->name('user.postblog');
 });
+
+Route::group(['prefix'=>'admin','middleware'=>'auth'], function() {
+    Route::get('dashboard','AdminController@home')->name('admin.home');
+    Route::post('verifikasi/{id}','AdminController@verifikasi')->name('admin.verif');
+});

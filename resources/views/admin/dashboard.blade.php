@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Dashboard Admin</div>
 
@@ -34,8 +34,18 @@
                                 <td>{{$value->title}}</td>
                                 <td>{{$value->content}}</td>
                                 <td>{{$value->status}}</td>
-                                <td>{{$value->user_id}}</td>
-                                <td>Verifikasi || Tolak</td>
+                                <td>{{$value->user->name}}</td>
+                                <td>
+                                @if($value->status == '0') 
+                                <form action="{{ route('admin.verif',['id' => $value->id]) }}" method="POST">
+                                @csrf
+                                <input type="submit" value="Verifikasi" class="btn btn-primary btn-sm">
+                                || Tolak
+                                </form>
+                                @else 
+                                <h6 class="p-1 mb-1 bg-success text-dark">Telah Diverifikasi</h6>
+                                @endif
+                                </td>
                             </tr>
                         </tbody>
                         @empty

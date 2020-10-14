@@ -32,11 +32,15 @@ class UserController extends Controller
         $data = [
             'title' => request('title'),
             'content' => request('content'),
-            'status' => '0',
-            'user_id' => Auth::user()->id
+            'status' => '0'
         ];
         
-        $blog = Blog::create($data);
+        // $blog = Blog::create($data);
+        $user = Auth::user();
+
+        $blogg = new Blog($data);
+
+        $blog = $user->blogs()->save($blogg);
         if($blog){
             return redirect()->route('user.home')->with('success','Blog Berhasil Dibuat');
         }
