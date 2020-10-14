@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Blog;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\UserPublishNotificationMail;
+use App\Events\AdminVerifBlog;
 
 class AdminController extends Controller
 {
@@ -26,7 +25,7 @@ class AdminController extends Controller
         $blog->status = '1';
         $blog->save();
 
-        Mail::to($user)->send(new UserPublishNotificationMail($user,$blog));
+        event(new AdminVerifBlog($user,$blog));
 
         return redirect(route('admin.home'));
     }
