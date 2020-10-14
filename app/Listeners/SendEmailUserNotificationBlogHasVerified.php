@@ -8,7 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\UserPublishNotificationMail;
 
-class SendEmailUserNotificationBlogHasVerified
+class SendEmailUserNotificationBlogHasVerified implements ShouldQueue
 {
     /**
      * Create the event listener.
