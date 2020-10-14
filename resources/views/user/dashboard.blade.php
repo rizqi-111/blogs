@@ -10,7 +10,7 @@
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                            {{ session('success') }}
                         </div>
                     @endif
                     <h3>List Blog</h3>
@@ -32,7 +32,7 @@
                                 <td>{{$key+1}}</td>
                                 <td>{{$value->title}}</td>
                                 <td>{{$value->content}}</td>
-                                <td>1</td>
+                                <td>{{$value->status}}</td>
                                 <td>Edit || Delete</td>
                             </tr>
                         </tbody>

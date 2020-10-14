@@ -29,4 +29,5 @@ Route::prefix('account')->group(function () {
 Route::group(['prefix'=>'user','middleware' => 'auth'],function() {
     Route::get('dashboard','UserController@home')->name('user.home');
     Route::get('makeBlog','UserController@makeblog')->name('user.makeblog');
+    Route::post('makeBlog','UserController@postblog')->name('user.postblog');
 });

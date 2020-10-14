@@ -15,11 +15,30 @@ class UserController extends Controller
     }
 
     public function home(){
-        $blog = Blog::all();
+        $blog = Blog::where('user_id',Auth::user()->id)->get();
         return view('user/dashboard')->with(compact('blog'));
     }
 
     public function makeblog(){
         return view('user/create');
+    }
+
+    public function postblog(Request $request){
+        $request->validate([
+            'title' => ['required', 'max:255'],
+            'content' => ['required', 'max:255']
+        ]);
+        
+        $data = [
+            'title' => request('title'),
+            'content' => request('content'),
+            'status' => '0',
+            'user_id' => Auth::user()->id
+        ];
+        
+        $blog = Blog::create($data);
+        if($blog){
+            return redirect()->route('user.home')->with('success','Blog Berhasil Dibuat');
+        }
     }
 }

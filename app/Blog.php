@@ -8,7 +8,7 @@ class Blog extends Model
 {
     //
     protected $fillable = [
-        'title', 'content', 'user_id'
+        'title', 'content', 'user_id', 'status'
     ];
 
     public function user(){
